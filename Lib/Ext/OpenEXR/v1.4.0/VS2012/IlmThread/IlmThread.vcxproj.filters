@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Souce Files">
+      <UniqueIdentifier>{055fe48f-2689-4c76-b05c-90a87aca910a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ad302338-a68f-4ccf-810b-ebb402f3cca7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Libs\IlmThread\IlmThreadMutexWin32.cpp">
+      <Filter>Souce Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libs\IlmThread\IlmThreadPool.cpp">
+      <Filter>Souce Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libs\IlmThread\IlmThreadSemaphoreWin32.cpp">
+      <Filter>Souce Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libs\IlmThread\IlmThreadWin32.cpp">
+      <Filter>Souce Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Libs\IlmThread\IlmThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libs\IlmThread\IlmThreadMutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libs\IlmThread\IlmThreadPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libs\IlmThread\IlmThreadSemaphore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

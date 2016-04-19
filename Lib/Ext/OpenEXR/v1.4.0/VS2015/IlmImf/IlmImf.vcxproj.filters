@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{71f1b80d-db3f-4606-b235-4ffe6150dabd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0086c179-aafa-437f-9b27-02514f00ba41}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\IlmImf\ImfArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfAutoArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfBoxAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfChannelList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfChannelListAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfChromaticities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfChromaticitiesAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfCompression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfCompressionAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfCompressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfConvert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfCRgbaFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfDoubleAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfEnvmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfEnvmapAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfFloatAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfFrameBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfHuf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfInputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfInt64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfIntAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfKeyCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfKeyCodeAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfLineOrder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfLineOrderAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfLut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfMatrixAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfMisc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfOpaqueAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfOutputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfPixelType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfPizCompressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfPreviewImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfPreviewImageAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfPxr24Compressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfRgba.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfRgbaFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfRgbaYca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfRleCompressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfScanLineInputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfStandardAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfStdIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfStringAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTestFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfThreading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTileDescription.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTileDescriptionAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTiledInputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTiledMisc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTiledOutputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTiledRgbaFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTileOffsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTimeCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfTimeCodeAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfVecAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfVersion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfWav.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfXdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IlmImf\ImfZipCompressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\IlmImf\ImfAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfBoxAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfChannelList.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfChannelListAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfChromaticities.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfChromaticitiesAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfCompressionAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfCompressor.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfConvert.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfCRgbaFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfDoubleAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfEnvmap.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfEnvmapAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfFloatAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfFrameBuffer.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfHeader.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfHuf.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfInputFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfIntAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfIO.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfKeyCode.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfKeyCodeAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfLineOrderAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfLut.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfMatrixAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfMisc.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfOpaqueAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfOutputFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfPizCompressor.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfPreviewImage.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfPreviewImageAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfPxr24Compressor.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfRgbaFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfRgbaYca.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfRleCompressor.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfScanLineInputFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfStandardAttributes.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfStdIO.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfStringAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTestFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfThreading.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTileDescriptionAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTiledInputFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTiledMisc.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTiledOutputFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTiledRgbaFile.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTileOffsets.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTimeCode.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfTimeCodeAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfVecAttribute.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfVersion.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfWav.cpp" />
+    <ClCompile Include="..\..\Source\IlmImf\ImfZipCompressor.cpp" />
+  </ItemGroup>
+</Project>
