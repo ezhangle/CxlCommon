@@ -341,27 +341,13 @@ using AMDTProfileSamplingConfigVec = gtVector<AMDTProfileSamplingConfig>;
 //
 
 // This struct is used for sample info insertion into DB
-// TODO: this will removed once we optimize translation for DB
+// TODO: this will be removed once we optimize translation for DB
 struct CPSampleData
 {
-    // Module Info
+    gtUInt64    m_processThreadId = 0;
     gtUInt32    m_moduleInstanceId = 0;
-    gtUInt64    m_pid = 0;
-    gtUInt32    m_coreId = 0;
-
-    // Event Info
-    gtUInt16    m_event = 0;
-    gtUByte     m_unitMask = 0;
-    bool        m_bitOs = false;
-    bool        m_bitUsr = false;
-
-    // Thread Info
-    gtUInt32    m_threadId = 0;
-
-    // Function Info
+    gtUInt64    m_coreSamplingConfigId = 0;
     gtUInt32    m_functionId = 0;
-
-    // Sample Info
     gtUInt64    m_offset = 0;
     gtUInt64    m_count = 0;
 };
