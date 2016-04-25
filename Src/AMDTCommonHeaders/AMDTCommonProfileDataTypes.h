@@ -43,47 +43,59 @@ typedef AMDTUInt32       AMDTThreadId;
 typedef AMDTUInt32       AMDTCounterId;
 typedef AMDTUInt32       AMDTFunctionId;
 
-struct AMDTProfileSourceLineData;
-struct AMDTProfileSourceLineTable;
-struct AMDTProfileInstructionData;
-
 //
 //  Enums
 //
 
 enum AMDTProfileMode
 {
-    AMDT_PROFILE_MODE_NONE = 0,
-    AMDT_PROFILE_MODE_TIMELINE = 1,
-    AMDT_PROFILE_MODE_AGGREGATION = 2
+    AMDT_PROFILE_MODE_NONE        = 0,
+    AMDT_PROFILE_MODE_TIMELINE    = 1,
+    AMDT_PROFILE_MODE_AGGREGATION = 2,
 };
 
 enum AMDTProfileDataType
 {
-    AMDT_PROFILE_DATA_PROCESS = 1,
-    AMDT_PROFILE_DATA_THREAD,
-    AMDT_PROFILE_DATA_MODULE,
-    AMDT_PROFILE_DATA_FUNCTION,
+    AMDT_PROFILE_DATA_PROCESS  = 1,
+    AMDT_PROFILE_DATA_THREAD   = 2,
+    AMDT_PROFILE_DATA_MODULE   = 3,
+    AMDT_PROFILE_DATA_FUNCTION = 4,
+};
+
+enum AMDTProfileCounterType
+{
+    AMDT_PROFILE_COUNTER_TYPE_RAW      = 1,
+    AMDT_PROFILE_COUNTER_TYPE_COMPUTED = 2,
+};
+
+enum AMDTProfileCounterUnit
+{
+    AMDT_PROFILE_COUNTER_UNIT_COUNT   = 1,
+    AMDT_PROFILE_COUNTER_UNIT_RATIO   = 2,
+    AMDT_PROFILE_COUNTER_UNIT_PERCENT = 3,
 };
 
 enum AMDTModuleType
 {
-    AMDT_MODULE_TYPE_NONE = 0,
-    AMDT_MODULE_TYPE_NATIVE = 1,
-    AMDT_MODULE_TYPE_JAVA = 2,
-    AMDT_MODULE_TYPE_MANAGEDDPE = 3,
-    AMDT_MODULE_TYPE_OCL = 4,
-    AMDT_MODULE_TYPE_UNKNOWN = 5,
+    AMDT_MODULE_TYPE_NONE           = 0,
+    AMDT_MODULE_TYPE_NATIVE         = 1,
+    AMDT_MODULE_TYPE_JAVA           = 2,
+    AMDT_MODULE_TYPE_MANAGEDDPE     = 3,
+    AMDT_MODULE_TYPE_OCL            = 4,
+    AMDT_MODULE_TYPE_UNKNOWN        = 5,
     AMDT_MODULE_TYPE_UNKNOWN_KERNEL = 6,
 };
 
 enum AMDTReportOptionType
 {
-    AMDT_REPORT_OPTION_COREMASK = 1,
-    AMDT_REPORT_OPTION_SEP_BY_CORE,
-    AMDT_REPORT_OPTION_IGNORE_SYSTEM_MODULE,
-    AMDT_REPORT_OPTION_SORT_PROFILE_DATA,
-    AMDT_REPORT_OPTION_SUMMARY_COUNT,
+    AMDT_REPORT_OPTION_COREMASK                = 1,
+    AMDT_REPORT_OPTION_AGGREGATE_BY_CORE       = 2,
+    AMDT_REPORT_OPTION_AGGREGATE_BY_NUMA       = 3,
+    AMDT_REPORT_OPTION_IGNORE_SYSTEM_MODULE    = 4,
+    AMDT_REPORT_OPTION_SORT_PROFILE_DATA       = 5,    // TBD: Is this required ?
+    AMDT_REPORT_OPTION_OTHERS_ENTRY_IN_SUMMARY = 6,
+    AMDT_REPORT_OPTION_SUMMARY_COUNT           = 7,
+    AMDT_REPORT_OPTION_MAX_BYTES_TO_DISASM     = 8,
 };
 
 //
@@ -94,19 +106,17 @@ struct AMDTProfileDevice
 {
     AMDTUInt32              m_deviceId;
     AMDTUInt32              m_deviceType;
-
-    gtString                m_deviceTypeStr;    // The original PP tables/dal/adapter are convoluted @#$%^&
+    gtString                m_deviceTypeStr;
     gtString                m_name;
     gtString                m_description;
-
     gtVector<AMDTUInt32>    m_subDeviceIds;
 };
 
 struct AMDTCpuTopology
 {
-    AMDTUInt32  m_coreId = AMDT_PROFILE_ALL_CORES;
+    AMDTUInt32  m_coreId      = AMDT_PROFILE_ALL_CORES;
     AMDTUInt16  m_processorId = 0;
-    AMDTUInt16  m_numaNodeId = 0;
+    AMDTUInt16  m_numaNodeId  = 0;
 
     AMDTCpuTopology(AMDTUInt32 coreId, AMDTUInt16 processorId, AMDTUInt16 numaNodeId) :
         m_coreId(coreId), m_processorId(processorId), m_numaNodeId(numaNodeId) {}
@@ -130,68 +140,60 @@ struct AMDTProfileSamplingConfig
 
 struct AMDTProfileCounterDesc
 {
-    AMDTUInt32              m_id;   // samplingConfigurationId
-    AMDTUInt32              m_type; // AMDTProfileCounterType.. named as counterAggregation.. actually it is better to have "BASIC" or "CALCULATED"
+    AMDTUInt32              m_id;           // samplingConfigurationId
 
-    // This field will contain:
-    //      actual HW PMC event id for AMDT_CPUPROF_COUNTER_TYPE_BASIC type counters
-    //      AMDT_CPUPROF_PMC_EVENT_ID_MAX for AMDT_CPUPROF_COUNTER_TYPE_CALCULATED type counters
-    AMDTUInt32              m_hwEventId;    // HW PMC event id
+    AMDTUInt32              m_hwEventId;    // HW PMC event id for RAW counters or AMDT_PROFILE_ALL_COUNTERS for COMPUTED counters
     AMDTUInt32              m_deviceId;
-    AMDTUInt32              m_category;     // for power it its temp,pwr,freq
-    AMDTUInt32              m_unit;         // AMDTProfileCounterUnit count, percent
 
     gtString                m_name;
     gtString                m_description;
+    AMDTUInt32              m_type;         // AMDTProfileCounterType
+    AMDTUInt32              m_category;     // UNUSED for CPU Profiler. For Power profiler it is Power/Frequency/Temperature
+    AMDTUInt32              m_unit;         // AMDTProfileCounterUnit
+
 
     // these are required due to old pp table design
     gtString                m_typeStr;
     gtString                m_categoryStr;
     gtString                m_unitStr;
-
-    // Sampling Configuration:
-    // Valid only for AMDT_CPUPROF_COUNTER_TYPE_BASIC type counters
-    AMDTProfileSamplingConfig   m_samplingConfig;
-
-#if 0
-    // default ctor
-    AMDTProfileCounterDesc() = default;
-    // delete default copy ctor
-    AMDTProfileCounterDesc(const AMDTProfileCounterDesc& other) = delete;
-#endif //0
 };
+using AMDTProfileCounterDescVec = gtVector<AMDTProfileCounterDesc>;
 
 struct AMDTProfileDataOptions
 {
     gtVector<AMDTUInt32>    m_counters;     // counters on which the queries will be selected
     gtUInt64                m_coreMask = 0;
     bool                    m_isSeperateByCore = false;
+    bool                    m_isSeperateByNuma = false;
     bool                    m_doSort = true;
     bool                    m_ignoreSystemModules = true;
-    size_t                  m_summaryCount = 5;
+    bool                    m_othersEntryInSummary = true;
+    gtUInt16                m_summaryCount = 5;
+    gtUInt16                m_maxBytesToDisassemble = 2048; // bytes
 
     void Clear(void)
     {
         m_counters.clear();
         m_coreMask = 0;
         m_isSeperateByCore = false;
+        m_isSeperateByNuma = false;
         m_doSort = false;
         m_ignoreSystemModules = false;
+        m_othersEntryInSummary = false;
         m_summaryCount = 0;
+        m_maxBytesToDisassemble = 0;
     };
 };
-
 
 // From a session profile data various reports can be generated using the sampled counters and the calculated counter like
 //      - all data (raw counters)
 //      - ipc assessment (cpu-ccyles, retured-microops, cpi, ipc)
 struct AMDTProfileReportConfig
 {
-    AMDTUInt32                          m_id;
-    gtString                            m_name;
+    gtString                    m_name;
 
     // Counters that are supported for this CPU Profile Data View Configuration
-    gtVector<AMDTProfileCounterDesc>    m_counterDescs;
+    AMDTProfileCounterDescVec   m_counterDescs;
 };
 
 struct AMDTProfileModuleInfo
@@ -205,8 +207,7 @@ struct AMDTProfileModuleInfo
     AMDTUInt64          m_checksum = 0;
     bool                m_is64Bit = false;
     bool                m_isSystemModule = false;
-    bool                m_isMainModule = false;
-    bool                m_foundDebugInfo = false;   // during translation
+    bool                m_foundDebugInfo = false;
 };
 
 struct AMDTProfileThreadInfo
@@ -218,32 +219,31 @@ struct AMDTProfileThreadInfo
     AMDTUInt64          m_endTime;
 };
 
+using AMDTProfileModuleInfoVec = gtVector<AMDTProfileModuleInfo>;
+using AMDTProfileThreadInfoVec = gtVector<AMDTProfileThreadInfo>;
+
 struct AMDTProfileProcessInfo
 {
     AMDTProcessId               m_pid;
     gtString                    m_name;
     gtString                    m_path;
     bool                        m_is64Bit;
+
     AMDTUInt64                  m_startTime;
     AMDTUInt64                  m_endTime;
 
-    gtVector<AMDTProfileModuleInfo>    m_modulesList;
-    gtVector<AMDTProfileThreadInfo>    m_threadsList;
+    AMDTProfileModuleInfoVec    m_modulesList;
+    AMDTProfileThreadInfoVec    m_threadsList;
 };
 
 struct AMDTProfileFunctionInfo
 {
-    AMDTFunctionId                          m_functionId;
-    gtString                                m_name;
-
-    AMDTModuleId                            m_moduleId;
-    gtString                                m_modulePath;   // redundant
-
-    gtUInt64                                m_startOffset;  // w.r.t module base address
-    gtUInt32                                m_size;
-
-    bool                                    m_isSrcInfoAvailable = false;
-    gtString                                m_sourceFile;
+    AMDTFunctionId    m_functionId;
+    gtString          m_name;
+    AMDTModuleId      m_moduleId;
+    gtString          m_modulePath; // TBD: Not Reqd
+    gtUInt64          m_startOffset;
+    gtUInt32          m_size;
 };
 
 struct AMDTSampleValue
@@ -257,84 +257,76 @@ struct AMDTSampleValue
     double                  m_sampleCount = 0.0;
     double                  m_sampleCountPercentage = 0.0;
 };
+using AMDTSampleValueVec = gtVector<AMDTSampleValue>;
 
 struct AMDTProfileData
 {
-    AMDTProfileDataType         m_type;         // process, module, function, thread?
-
-    AMDTProcessId               m_processId;
-    AMDTModuleId                m_moduleId;
-    AMDTThreadId                m_threadId;
-    AMDTFunctionId              m_functionId;
-
-    gtString                    m_name;         // name of the process/module/function/thread
-    gtString                    m_path;         // path of module.. valid for process, module, function(module path)
-
-    gtVector<AMDTSampleValue>   m_sampleValue;
-
-    // TODO:
-    // Add ctor add copy ctor
+    AMDTProfileDataType  m_type;         // process, module, function, thread?
+    gtUInt64             m_id;          // Can be Process/Module/Function Id depending on the type
+    AMDTModuleId         m_moduleId;    // Valid for Functions,
+    gtString             m_name;         // name of the function/thread or path of the process/module
+    AMDTSampleValueVec   m_sampleValue;
 };
 
 struct AMDTProfileInstructionData
 {
-    AMDTUInt32                      m_offset;           // offset from the beginning of the module. should this be from beginning of the function
-    gtVector<AMDTSampleValue>       m_sampleValues;
-};
+    AMDTUInt32          m_offset;           // offset from the beginning of the module. should this be from beginning of the function
+    AMDTSampleValueVec  m_sampleValues;
 
-struct AMDTProfileFunctionData
-{
-    AMDTProfileFunctionInfo                 m_functionInfo;
-
-    AMDTProcessId                           m_pid;              // If AMDT_CP_ALL_PROCESSES, aggregated across all processes
-    AMDTThreadId                            m_threadId;
-
-    gtUInt64                                m_modBaseAddress;  // not reqd
-
-    gtVector<AMDTProfileInstructionData>    m_instDataList;
-    // TODO: should i add source-line level profile data, srcline table & disassembly for the entire function
-
-    ~AMDTProfileFunctionData()
-    {
-        clear();
-    }
-
-    void clear(void)
-    {
-        m_instDataList.clear();
-    }
-};
-
-struct AMDTProfileSourceLineData
-{
-    AMDTUInt32                      m_sourceLineNumber; // Line number in the source
-
-    AMDTUInt32                      m_offset;           // offset from the beginning of the function - NOT REQUIRED ?
-    AMDTUInt32                      m_size;
-
-    gtVector<AMDTSampleValue>       m_sampleValues;
-
-    ~AMDTProfileSourceLineData()
-    {
-        clear();
-    }
-
-    void clear(void)
+    ~AMDTProfileInstructionData()
     {
         m_sampleValues.clear();
     }
 };
+using AMDTProfileInstructionDataVec = gtVector<AMDTProfileInstructionData>;
 
-// Offset range - Source Line Table
-struct AMDTProfileSourceLineTable
+struct AMDTProfileSourceLineData
 {
-    AMDTUInt32          m_offset;
-    AMDTUInt32          m_size;
-    AMDTUInt32          m_sourceLineNumber;
+    AMDTUInt32          m_sourceLineNumber; // Line number in the source
+    AMDTSampleValueVec  m_sampleValues;
+
+    ~AMDTProfileSourceLineData()
+    {
+        m_sampleValues.clear();
+    }
+};
+using AMDTProfileSourceLineDataVec = gtVector<AMDTProfileSourceLineData>;
+
+struct AMDTProfileFunctionData
+{
+    AMDTProfileFunctionInfo         m_functionInfo;
+
+    // TODO: We need to provide the pids and threads list for which this function has samples
+    // AMDTProcessId                   m_pid;
+    // AMDTThreadId                    m_threadId;
+
+    gtUInt64                        m_modBaseAddress;  // TBD: Not Reqduired?
+
+    AMDTProfileSourceLineDataVec    m_srcLineDataList;
+    AMDTProfileInstructionDataVec   m_instDataList;
+
+    ~AMDTProfileFunctionData()
+    {
+        m_srcLineDataList.clear();
+        m_instDataList.clear();
+    }
 };
 
-using AMDTProfileCounterDescVec = gtVector<AMDTProfileCounterDesc>;
+// Source and Disassmebly info
+struct AMDTSourceAndDisasmInfo
+{
+    gtVAddr     m_offset;
+    gtUInt16    m_sourceLine;
+    gtString    m_disasmStr;
+    gtString    m_codeByteStr;
+};
+
+using AMDTSourceAndDisasmInfoVec = gtVector<AMDTSourceAndDisasmInfo>;
+using AMDTCpuTopologyVec = gtVector<AMDTCpuTopology>;
+using AMDTProfileProcessInfoVec = gtVector<AMDTProfileProcessInfo>;
 using AMDTProfileSamplingConfigVec = gtVector<AMDTProfileSamplingConfig>;
+using AMDTProfileDataVec = gtVector<AMDTProfileData>;
+using AMDTProfileReportConfigVec = gtVector<AMDTProfileReportConfig>;
 
 //
 //  Temporary structs
