@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="src\AMDTOSWrappersTests\os.MachineTests.cpp" />
     <ClCompile Include="src\AMDTOSWrappersTests\osApplicationWinTests.cpp" />
+    <ClCompile Include="src\AMDTOSWrappersTests\osFileTests.cpp" />
     <ClCompile Include="src\AMDTOSWrappersTests\osGeneralFunctionsTests.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
