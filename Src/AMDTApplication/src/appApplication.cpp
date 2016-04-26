@@ -80,12 +80,15 @@ appApplicationStart::ApplicationStartupData::ApplicationStartupData()
 
 appApplicationStart::ApplicationStartupData& appApplicationStart::ApplicationStartupData::operator=(const ApplicationStartupData& other)
 {
-    m_productName = other.m_productName;
-    m_dllNamesForLoad = other.m_dllNamesForLoad;
-    m_applicationIconId = other.m_applicationIconId;
-    m_splashScreenFullPath = other.m_splashScreenFullPath;
-    m_initializeExecutionModesManager = other.m_initializeExecutionModesManager;
-    m_flagEnable = other.m_flagEnable;
+    if (this != &other)
+    {
+        m_productName = other.m_productName;
+        m_dllNamesForLoad = other.m_dllNamesForLoad;
+        m_applicationIconId = other.m_applicationIconId;
+        m_splashScreenFullPath = other.m_splashScreenFullPath;
+        m_initializeExecutionModesManager = other.m_initializeExecutionModesManager;
+        m_flagEnable = other.m_flagEnable;
+    }
     return *this;
 }
 
