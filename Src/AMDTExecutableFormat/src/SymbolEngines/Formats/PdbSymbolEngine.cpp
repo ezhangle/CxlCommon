@@ -2247,9 +2247,7 @@ void PdbSymbolEngine::ConstructFunctionSymbolInfo(FunctionSymbolInfo& funcInfo, 
     }
 
     funcInfo.m_hasInlines = hasInlineSite;
-#ifdef AMDT_ENABLE_CPUPROF_DB
     funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
 }
 
 static wchar_t* ExtractDemangledName(IDiaSymbol* pSymbol)

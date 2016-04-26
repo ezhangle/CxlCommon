@@ -179,9 +179,7 @@ bool ElfSymbolEngine::Initialize(const ElfFile& elf)
 
                             if (NULL != funcInfo.m_pName)
                             {
-#ifdef AMDT_ENABLE_CPUPROF_DB
                                 funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
                                 m_pFuncsInfoVec->push_back(funcInfo);
                             }
                         }
@@ -223,9 +221,8 @@ bool ElfSymbolEngine::Initialize(const ElfFile& elf)
         funcInfo.m_rva = pltStart;
         funcInfo.m_size = pltSize;
         funcInfo.m_pName = new wchar_t[6] {'[', 'P', 'L', 'T', ']', '\0'};
-#ifdef AMDT_ENABLE_CPUPROF_DB
         funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
+
         m_pFuncsInfoVec->push_back(funcInfo);
     }
 
@@ -339,9 +336,8 @@ bool ElfSymbolEngine::ProcessRelPltSection(
                 funcInfo.m_rva = pltStart + (pltEsize * i);
                 funcInfo.m_size = pltEsize + 1;
                 funcInfo.m_pName = funcName;
-#ifdef AMDT_ENABLE_CPUPROF_DB
                 funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
+
                 m_pFuncsInfoVec->push_back(funcInfo);
                 result = true;
             }
@@ -413,9 +409,8 @@ bool ElfSymbolEngine::ProcessRelaPltSection(
                 funcInfo.m_rva = pltStart + (pltEsize * i);
                 funcInfo.m_size = pltEsize + 1;
                 funcInfo.m_pName = funcName;
-#ifdef AMDT_ENABLE_CPUPROF_DB
                 funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
+
                 m_pFuncsInfoVec->push_back(funcInfo);
                 result = true;
             }

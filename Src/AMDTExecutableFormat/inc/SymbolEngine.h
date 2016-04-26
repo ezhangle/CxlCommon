@@ -67,10 +67,7 @@ struct FunctionSymbolInfo
     bool     m_hasInlines;
     gtVector<FuncAddressRange>* m_addrRanges;
     wchar_t* m_pName; ///< The function name
-
-#ifdef AMDT_ENABLE_CPUPROF_DB
     gtUInt32  m_funcId = 0;
-#endif
 };
 
 inline bool operator<(const FunctionSymbolInfo& funcInfo, gtRVAddr rva)
@@ -214,10 +211,8 @@ protected:
     static wchar_t* AnsiToUnicode(const char* pAnsi, int lenAnsi = -1);
 #endif
 
-#ifdef AMDT_ENABLE_CPUPROF_DB
 protected:
     mutable gtInt32 m_nextFuncId = 1;
-#endif
 };
 
 #endif // _SYMBOLENGINE_H_

@@ -94,9 +94,7 @@ void CoffSymbolEngine::EnumerateFunctionSymbols(const PeFile& pe, wchar_t* (*pfn
                 FUNCSYM_OFFSET_SUPPORT(funcInfo.m_offset = 0U;)
                 funcInfo.m_rva = startRva + pSymbol->Value;
                 funcInfo.m_pName = ExtractDemangledName(pSymbol, m_pStringTable, pfnDemangleName);
-#ifdef AMDT_ENABLE_CPUPROF_DB
                 funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
 
                 if (0 < pSymbol->NumberOfAuxSymbols)
                 {
@@ -285,9 +283,7 @@ void CoffSymbolEngine::EnumerateExports(const PeFile& pe, const IMAGE_EXPORT_DIR
             {
                 itFuncInfo->m_rva = it->first;
                 itFuncInfo->m_pName = it->second;
-#ifdef AMDT_ENABLE_CPUPROF_DB
                 itFuncInfo->m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
             }
 
             // gtMap is already sorted. We only need to sort if we had previous values in the vector.

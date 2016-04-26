@@ -16,9 +16,6 @@
 #include <AMDTBaseTools/Include/gtString.h>
 #include <AMDTBaseTools/Include/gtVector.h>
 
-// Temporary macro to enable/disable intermediate DB changes
-//#define AMDT_ENABLE_CPUPROF_DB 1
-
 //
 //      Macros
 //

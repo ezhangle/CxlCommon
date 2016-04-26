@@ -179,9 +179,8 @@ bool DwarfSymbolEngine::TraverseSubprograms(Dwarf_Die cuDie, void*)
                         funcInfo.m_size = (addrLow <= addrHigh) ? static_cast<gtUInt32>(addrHigh - addrLow) :
                                           static_cast<gtUInt32>(addrHigh);
                         funcInfo.m_pName = pName;
-#ifdef AMDT_ENABLE_CPUPROF_DB
                         funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
+
                         m_pFuncsInfoVec->push_back(funcInfo);
                     }
                 }

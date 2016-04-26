@@ -157,9 +157,7 @@ bool StabsSymbolEngine::Initialize(const ExecutableFile& exe, unsigned stabIndex
                             funcInfo.m_rva = entry.n_value - m_imageBase;
                             funcInfo.m_size = 0U;
                             funcInfo.m_pName = pSymbolName;
-#ifdef AMDT_ENABLE_CPUPROF_DB
                             funcInfo.m_funcId = AtomicAdd(m_nextFuncId, 1);
-#endif
 
                             if (NULL != pPrevFunc)
                             {
