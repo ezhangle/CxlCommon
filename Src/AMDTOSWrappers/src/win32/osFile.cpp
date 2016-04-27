@@ -138,3 +138,11 @@ bool osFile::deleteFile()
 
     return retVal;
 }
+
+bool osFile::IsExecutable() const
+{
+    DWORD binaryType = DWORD(-1);
+    bool result = FALSE!= GetBinaryType(_filePath.asString().asCharArray(), &binaryType);
+    return result;
+
+}

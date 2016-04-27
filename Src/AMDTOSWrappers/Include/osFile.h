@@ -70,6 +70,7 @@ public:
 
     bool exists() const;
     bool getSize(unsigned long& fileSize) const;
+    bool IsExecutable() const;
 
     // Input stream methods:
     bool readLine(gtString& line);

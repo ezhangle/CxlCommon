@@ -29,5 +29,8 @@
     <ClCompile Include="src\AMDTOSWrappersTests\os.MachineTests.cpp">
       <Filter>src\AMDTOSWrappersTests</Filter>
     </ClCompile>
+    <ClCompile Include="src\AMDTOSWrappersTests\osFileTests.cpp">
+      <Filter>src\AMDTOSWrappersTests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
