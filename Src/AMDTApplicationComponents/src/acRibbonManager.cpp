@@ -70,7 +70,7 @@ bool acRibbonTooltipEventFilter::eventFilter(QObject* object, QEvent* event)
 {
     if (event != nullptr && object != nullptr)
     {
-        if (event->type() == QEvent::MouseButtonPress)
+        if (event->type() == QEvent::MouseButtonPress || event->type() == QEvent::Wheel)
         {
             // let the parent ribbon manager take some extra action before doing the normal action
             // find the manager to execute the action
@@ -1538,12 +1538,21 @@ void acRibbonManager::LastRibbonCheck(bool openAction)
 void acRibbonManager::PassMouseClickBelowToolTip(QEvent* pEvent)
 {
     QMouseEvent* pMouseEvent = dynamic_cast<QMouseEvent*>(pEvent);
+    QWheelEvent* pWheelEvent = dynamic_cast<QWheelEvent*>(pEvent);
 
-    if (pMouseEvent != nullptr)
+    if (pMouseEvent != nullptr || pWheelEvent != nullptr)
     {
         // find the control under the tooltip and create a new event and pass it to the control
         // check only in the tooltip area
-        QPoint globalPos = pMouseEvent->globalPos();
+        QPoint globalPos;
+        if (pMouseEvent != nullptr)
+        {
+            globalPos = pMouseEvent->globalPos();
+        }
+        else
+        {
+            globalPos = pWheelEvent->globalPos();
+        }
 
         int foundRibbon = IsRibbonUnderPosition(globalPos);
 
@@ -1551,8 +1560,20 @@ void acRibbonManager::PassMouseClickBelowToolTip(QEvent* pEvent)
         {
             GT_IF_WITH_ASSERT(m_ribbonDataVector[foundRibbon].m_pRibbon != nullptr)
             {
-                // set the focus to the control under the tooltip control
-                m_ribbonDataVector[foundRibbon].m_pRibbon->setFocus();
+                if (pMouseEvent != nullptr)
+                {
+                    // set the focus to the control under the tooltip control
+                    m_ribbonDataVector[foundRibbon].m_pRibbon->setFocus();
+                }
+                else
+                {
+                    QPoint eventPosLocal = m_ribbonDataVector[foundRibbon].m_pRibbon->mapFromGlobal(pWheelEvent->globalPos());
+
+                    QWheelEvent* pCorrectedWheelEvent = new QWheelEvent(eventPosLocal, pWheelEvent->globalPos(),
+                        pWheelEvent->pixelDelta(), pWheelEvent->angleDelta(), pWheelEvent->angleDelta().ry(), pWheelEvent->orientation(), pWheelEvent->buttons(), Qt::NoModifier, pWheelEvent->phase());
+                    qApp->notify(m_ribbonDataVector[foundRibbon].m_pRibbon, pCorrectedWheelEvent);
+//                    m_ribbonDataVector[foundRibbon].m_pRibbon->event(pEvent);
+                }
             }
         }
     }
