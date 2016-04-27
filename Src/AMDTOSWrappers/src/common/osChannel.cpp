@@ -6,7 +6,7 @@
 ///
 //=====================================================================
 
-//------------------------------ osChannel.cpp ------------------------------
+//------------------------------ osChannel.cpp -----------------------------
 //C++ standard
 #include <memory>
 // Infra:
@@ -22,8 +22,8 @@
 
 // Default read and write time outs (applies when the sub class does not
 // override defaultReadOperationTimeOut() and defaultWriteOperationTimeOut()):
-#define OS_CHANNEL_DEFAULT_READ_TIMEOUT INT_MAX
-#define OS_CHANNEL_DEFAULT_WRITE_TIMEOUT INT_MAX
+#define OS_CHANNEL_DEFAULT_READ_TIMEOUT 15000
+#define OS_CHANNEL_DEFAULT_WRITE_TIMEOUT 5000
 
 // ---------------------------------------------------------------------------
 // Name:        osChannel::osChannel
@@ -63,17 +63,17 @@ osChannel::~osChannel()
 // Author:      AMD Developer Tools Team
 // Date:        24/8/2005
 // ---------------------------------------------------------------------------
-void osChannel::setReadOperationTimeOut(long)
+void osChannel::setReadOperationTimeOut(long timeout)
 {
     // If the user requests the default timeout for this channel type:
-  //  if (timeout == OS_CHANNEL_DEFAULT_TIME_OUT)
+    if (timeout == OS_CHANNEL_DEFAULT_TIME_OUT)
     {
         _readOperationTimeOut = defaultWriteOperationTimeOut();
     }
- //   else
- //   {
-  //      _readOperationTimeOut = timeout;
- //   }
+    else
+    {
+        _readOperationTimeOut = timeout;
+    }
 }
 
 
@@ -84,17 +84,17 @@ void osChannel::setReadOperationTimeOut(long)
 // Author:      AMD Developer Tools Team
 // Date:        24/8/2005
 // ---------------------------------------------------------------------------
-void osChannel::setWriteOperationTimeOut(long)
+void osChannel::setWriteOperationTimeOut(long timeout)
 {
     // If the user requests the default timeout for this channel type:
-   // if (timeout == OS_CHANNEL_DEFAULT_TIME_OUT)
-   // {
+    if (timeout == OS_CHANNEL_DEFAULT_TIME_OUT)
+    {
         _writeOperationTimeOut = defaultWriteOperationTimeOut();
-  //  }
-  //  else
-  //  {
-  //      _writeOperationTimeOut = timeout;
-  //  }
+    }
+    else
+    {
+        _writeOperationTimeOut = timeout;
+    }
 }
 
 
