@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <AMDTOSWrappers/Include/osFile.h>
 
+<<<<<<< HEAD
 TEST(osFileIsExecutable, IsExecutableOk)
 {
     gtString filePathStr = LR"(c:\temp\nosuchfile.txt)";
@@ -20,3 +21,22 @@ TEST(osFileIsExecutable, IsExecutableOk)
     EXPECT_TRUE(myFile.IsExecutable());
 
 }
+=======
+TEST(osFileIsExecutable, IsExecutableCheck)
+{
+    gtString path = LR"(c:\temp\NoSuchFile.txt)";
+    osFilePath filePath = path;
+    osFile myFile(filePath);
+    bool res = myFile.IsExecutable();
+    EXPECT_FALSE(res);
+    
+    wchar_t currentProcessPathBuf[MAX_PATH] = {};
+    EXPECT_NE(0, GetModuleFileName(nullptr, currentProcessPathBuf, MAX_PATH));
+    path = currentProcessPathBuf;
+    filePath = path;
+    myFile.setPath(filePath);
+    res = myFile.IsExecutable();
+    EXPECT_TRUE(res);
+
+}
+>>>>>>> refs/heads/Common
